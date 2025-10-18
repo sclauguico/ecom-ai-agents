@@ -1,0 +1,21 @@
+FROM node:18
+
+WORKDIR /app
+
+# Copy package files
+COPY package*.json ./
+
+# Install dependencies
+RUN npm install
+
+# Copy source code
+COPY . .
+
+# Set environment for React dev server
+ENV HOST=0.0.0.0
+ENV PORT=3000
+ENV CHOKIDAR_USEPOLLING=true
+
+EXPOSE 3000
+
+CMD ["npm", "start"]
